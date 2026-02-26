@@ -75,9 +75,19 @@ async def analyze_item(file: UploadFile = File(...)):
         # Analyze using vision service
         result = await analyze_item_image(image_base64, file.content_type)
         
-        return AnalyzeItemResponse(
+        response_data = AnalyzeItemResponse(
             success=True,
             analysis=AnalysisResult(**result)
+        )
+        
+        return JSONResponse(
+            status_code=200,
+            content=response_data.dict(),
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "*"
+            }
         )
         
     except HTTPException:
@@ -109,4 +119,12 @@ async def analyze_item_options():
     """
     Handle CORS preflight requests for analyze-item endpoint.
     """
-    return {"message": "CORS preflight successful"}
+    return JSONResponse(
+        status_code=200,
+        content={"message": "CORS preflight successful"},
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "*"
+        }
+    )

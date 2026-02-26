@@ -81,7 +81,15 @@ async def orchestrate_trade_post(request: TradeRequest):
             carbon_impact_kg=result["carbon_impact_kg"]
         )
         
-        return response_data
+        return JSONResponse(
+            status_code=200,
+            content=response_data.dict(),
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "*"
+            }
+        )
         
     except Exception as e:
         error_response = OrchestrateTradeResponse(
@@ -96,7 +104,15 @@ async def orchestrate_trade_post(request: TradeRequest):
             error=str(e)
         )
         
-        return error_response
+        return JSONResponse(
+            status_code=500,
+            content=error_response.dict(),
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "*"
+            }
+        )
 
 
 @router.options("/orchestrate-trade")
@@ -104,4 +120,12 @@ async def orchestrate_trade_options():
     """
     Handle CORS preflight requests for orchestrate-trade endpoint.
     """
-    return {"message": "CORS preflight successful"}
+    return JSONResponse(
+        status_code=200,
+        content={"message": "CORS preflight successful"},
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "*"
+        }
+    )
