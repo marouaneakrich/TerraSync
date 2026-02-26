@@ -87,10 +87,10 @@ async def add_cors_headers(request, call_next):
 logger.info(f"CORS Origins: {settings.ALLOWED_ORIGINS}")
 logger.info(f"CORS Methods: {settings.CORS_ALLOW_METHODS}")
 logger.info(f"CORS Headers: {settings.CORS_ALLOW_HEADERS}")
-logger.info(f"✅ CORS SOLUTION COMPLETE - Deployment: 2026-02-26-23:00-UTC")
+logger.info(f"🔒 SECURITY HARDENED - Deployment: 2026-02-26-23:05-UTC")
 
-# Add rate limiting middleware (temporarily disabled for debugging)
-# app.middleware("http")(rate_limit_middleware)
+# Add rate limiting middleware for production security
+app.middleware("http")(rate_limit_middleware)
 
 # Add exception handlers
 app.add_exception_handler(RequestValidationError, validation_exception_handler)

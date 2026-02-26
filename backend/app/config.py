@@ -14,14 +14,13 @@ class Settings(BaseSettings):
     VERSION: str = "1.0.0"
     API_PREFIX: str = "/api"
     
-    # CORS - Include Railway and Vercel domains
+    # CORS - Only allow specific domains for security
     ALLOWED_ORIGINS: List[str] = [
         "http://localhost:3000", 
         "http://127.0.0.1:3000",
         "https://localhost:3000",
         "https://127.0.0.1:3000",
-        "https://terrasync-ma.vercel.app",
-        "*"  # Allow all origins for development
+        "https://terrasync-ma.vercel.app"
     ]
     
     # Explicit CORS for production
