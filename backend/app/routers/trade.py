@@ -54,26 +54,13 @@ class OrchestrateTradeResponse(BaseModel):
 
 
 @router.post("/orchestrate-trade", response_model=OrchestrateTradeResponse)
-@router.options("/orchestrate-trade")
-async def orchestrate_trade(request: TradeRequest = None):
+async def orchestrate_trade_post(request: TradeRequest):
     """
     Orchestrate trade negotiation using AI agents.
     
     The agent negotiates with NGOs and recycling centers via mock API
     to find the best match for the item.
     """
-    # Handle OPTIONS preflight request
-    if request is None:
-        return JSONResponse(
-            status_code=200,
-            content={"message": "CORS preflight successful"},
-            headers={
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                "Access-Control-Allow-Headers": "*"
-            }
-        )
-    
     try:
         result = await orchestrate_trade_negotiation(
             item_id=request.item_id,
@@ -126,3 +113,19 @@ async def orchestrate_trade(request: TradeRequest = None):
                 "Access-Control-Allow-Headers": "*"
             }
         )
+
+
+@router.options("/orchestrate-trade")
+async def orchestrate_trade_options():
+    """
+    Handle CORS preflight requests for orchestrate-trade endpoint.
+    """
+    return JSONResponse(
+        status_code=200,
+        content={"message": "CORS preflight successful"},
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "*"
+        }
+    )
