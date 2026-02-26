@@ -101,3 +101,13 @@ async def analyze_item(file: UploadFile = File(...)):
             )
         else:
             raise HTTPException(status_code=500, detail=f"Analysis failed: {error_msg}")
+
+
+@router.options("/analyze-item")
+async def analyze_item_options():
+    """
+    Handle CORS preflight requests for analyze-item endpoint.
+    """
+    return {
+        "message": "CORS preflight successful"
+    }
