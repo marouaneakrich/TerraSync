@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel
 from typing import Optional
 from enum import Enum
@@ -59,7 +59,7 @@ async def orchestrate_trade_post(request: TradeRequest):
     Orchestrate trade negotiation using AI agents.
     
     The agent negotiates with NGOs and recycling centers via mock API
-    to find the best match for the item.
+    to find best match for the item.
     """
     try:
         result = await orchestrate_trade_negotiation(
@@ -115,3 +115,13 @@ async def orchestrate_trade_post(request: TradeRequest):
         )
 
 
+@router.options("/orchestrate-trade")
+async def orchestrate_trade_options():
+    return Response(
+        status_code=200,
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "*"
+        }
+    )
