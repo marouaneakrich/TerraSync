@@ -81,7 +81,7 @@ export async function analyzeItem(file: File): Promise<AnalysisResult> {
   const formData = new FormData();
   formData.append('file', file);
 
-  const url = `${API_BASE_URL}/api/analyze-item`.replace(/\/+/g, '/');
+  const url = 'https://terrasync.up.railway.app/api/analyze-item';
   console.log('=== API DEBUG ===');
   console.log('API Base URL:', API_BASE_URL);
   console.log('Full URL:', url);
