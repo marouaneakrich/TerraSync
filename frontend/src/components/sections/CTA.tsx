@@ -40,7 +40,7 @@ export function CTA() {
                 Get Started Free
               </Button>
             </Link>
-            <Link href="https://terrasync-ma.vercel.app/docs" target="_blank" rel="noopener noreferrer">
+            <Link href="https://terrasync.up.railway.app/docs" target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="ghost">
                 View Documentation
               </Button>
