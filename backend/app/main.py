@@ -59,6 +59,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Debug: Log CORS configuration
+logger.info(f"CORS Origins: {settings.ALLOWED_ORIGINS}")
+
 # Add rate limiting middleware (temporarily disabled for debugging)
 # app.middleware("http")(rate_limit_middleware)
 
