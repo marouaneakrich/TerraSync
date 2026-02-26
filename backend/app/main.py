@@ -59,8 +59,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Add rate limiting middleware
-app.middleware("http")(rate_limit_middleware)
+# Add rate limiting middleware (temporarily disabled for debugging)
+# app.middleware("http")(rate_limit_middleware)
 
 # Add exception handlers
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
