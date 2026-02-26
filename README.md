@@ -3,7 +3,7 @@
 > Transform waste into sustainable value through intelligent AI analysis and agentic negotiation with recycling partners.
 
 ## 🚀 Live Demo
-- **Frontend**: [terrasync.app](terrasync.app) *(Coming Soon)*
+- **Frontend**: [terrasync-ma.vercel.app](terrasync-ma.vercel.app)
 - **API Documentation**: [terrasync.up.railway.app/docs](terrasync.up.railway.app/docs)
 
 ---
