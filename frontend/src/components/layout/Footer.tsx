@@ -70,7 +70,7 @@ export function Footer() {
               <a href="https://github.com/marouaneakrich/TerraSync" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-eco-glow transition-all duration-300 hover:scale-110">
                 <Github className="w-5 h-5 flex-shrink-0" />
               </a>
-              <a href="https://linkedin.com/company/terrasync" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-eco-glow transition-all duration-300 hover:scale-110">
+              <a href="https://www.linkedin.com/in/marouane-akrich/" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-eco-glow transition-all duration-300 hover:scale-110">
                 <Linkedin className="w-5 h-5 flex-shrink-0" />
               </a>
             </div>
