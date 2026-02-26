@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/+$/, '') || 'https://terrasync.up.railway.app';
+const API_BASE_URL = (process.env.NEXT_PUBLIC_API_URL || 'https://terrasync.up.railway.app').replace(/\/+$/, '');
 
 console.log('API Base URL:', API_BASE_URL);
 
@@ -81,7 +81,7 @@ export async function analyzeItem(file: File): Promise<AnalysisResult> {
   const formData = new FormData();
   formData.append('file', file);
 
-  const url = `${API_BASE_URL}/api/analyze-item`;
+  const url = `${API_BASE_URL}/api/analyze-item`.replace(/\/+/g, '/');
   console.log('=== API DEBUG ===');
   console.log('API Base URL:', API_BASE_URL);
   console.log('Full URL:', url);
