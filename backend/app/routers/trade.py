@@ -3,7 +3,10 @@ from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel
 from typing import Optional
 from enum import Enum
+import logging
 from app.services.agent_service import orchestrate_trade_negotiation
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
