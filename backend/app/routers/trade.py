@@ -115,18 +115,3 @@ async def orchestrate_trade_post(request: TradeRequest):
         )
 
 
-@router.options("/orchestrate-trade")
-async def orchestrate_trade_options():
-    """
-    Handle CORS preflight requests for orchestrate-trade endpoint.
-    """
-    headers = {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "*"
-    }
-    return JSONResponse(
-        status_code=200,
-        content={"message": "CORS preflight successful"},
-        headers=headers
-    )
