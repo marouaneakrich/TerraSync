@@ -1,4 +1,4 @@
-const API_BASE_URL = (process.env.NEXT_PUBLIC_API_URL || 'https://terrasync.up.railway.app').replace(/\/+$/, '');
+const API_BASE_URL = 'https://terrasync.up.railway.app';
 
 console.log('API Base URL:', API_BASE_URL);
 
