@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -53,6 +53,18 @@ async def debug_config():
 # Add comprehensive CORS middleware to handle OPTIONS globally
 @app.middleware("http")
 async def add_cors_headers(request, call_next):
+    # Handle OPTIONS preflight requests directly
+    if request.method == "OPTIONS":
+        response = Response(
+            status_code=200,
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "*"
+            }
+        )
+        return response
+    
     response = await call_next(request)
     
     # Add CORS headers to all responses
@@ -75,7 +87,7 @@ app.add_middleware(
 logger.info(f"CORS Origins: {settings.ALLOWED_ORIGINS}")
 logger.info(f"CORS Methods: {settings.CORS_ALLOW_METHODS}")
 logger.info(f"CORS Headers: {settings.CORS_ALLOW_HEADERS}")
-logger.info(f"Deployment timestamp: 2026-02-26-22:45-UTC")
+logger.info(f"Deployment timestamp: 2026-02-26-22:50-UTC")
 
 # Add rate limiting middleware (temporarily disabled for debugging)
 # app.middleware("http")(rate_limit_middleware)
