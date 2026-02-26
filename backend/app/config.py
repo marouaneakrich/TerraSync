@@ -25,6 +25,11 @@ class Settings(BaseSettings):
         "*"  # Allow all origins for development
     ]
     
+    # Explicit CORS for production
+    CORS_ALLOW_CREDENTIALS: bool = True
+    CORS_ALLOW_METHODS: List[str] = ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+    CORS_ALLOW_HEADERS: List[str] = ["*"]
+    
     # OpenRouter Configuration
     OPENROUTER_API_KEY: str = ""
     OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"

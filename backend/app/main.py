@@ -54,13 +54,15 @@ async def debug_config():
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.ALLOWED_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=["*"],
+    allow_credentials=settings.CORS_ALLOW_CREDENTIALS,
+    allow_methods=settings.CORS_ALLOW_METHODS,
+    allow_headers=settings.CORS_ALLOW_HEADERS,
 )
 
 # Debug: Log CORS configuration
 logger.info(f"CORS Origins: {settings.ALLOWED_ORIGINS}")
+logger.info(f"CORS Methods: {settings.CORS_ALLOW_METHODS}")
+logger.info(f"CORS Headers: {settings.CORS_ALLOW_HEADERS}")
 
 # Add rate limiting middleware (temporarily disabled for debugging)
 # app.middleware("http")(rate_limit_middleware)
