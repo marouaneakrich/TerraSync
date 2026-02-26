@@ -50,15 +50,6 @@ async def debug_config():
     }
 
 
-# Configure CORS - Use production settings
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.ALLOWED_ORIGINS,
-    allow_credentials=settings.CORS_ALLOW_CREDENTIALS,
-    allow_methods=settings.CORS_ALLOW_METHODS,
-    allow_headers=settings.CORS_ALLOW_HEADERS,
-)
-
 # Add comprehensive CORS middleware to handle OPTIONS globally
 @app.middleware("http")
 async def add_cors_headers(request, call_next):
@@ -71,11 +62,20 @@ async def add_cors_headers(request, call_next):
     
     return response
 
+# Configure CORS - Use production settings
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.ALLOWED_ORIGINS,
+    allow_credentials=settings.CORS_ALLOW_CREDENTIALS,
+    allow_methods=settings.CORS_ALLOW_METHODS,
+    allow_headers=settings.CORS_ALLOW_HEADERS,
+)
+
 # Debug: Log CORS configuration
 logger.info(f"CORS Origins: {settings.ALLOWED_ORIGINS}")
 logger.info(f"CORS Methods: {settings.CORS_ALLOW_METHODS}")
 logger.info(f"CORS Headers: {settings.CORS_ALLOW_HEADERS}")
-logger.info(f"Deployment timestamp: 2026-02-26-22:40-UTC")
+logger.info(f"Deployment timestamp: 2026-02-26-22:45-UTC")
 
 # Add rate limiting middleware (temporarily disabled for debugging)
 # app.middleware("http")(rate_limit_middleware)
