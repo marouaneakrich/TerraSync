@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import Optional
 from enum import Enum
@@ -69,7 +70,7 @@ async def orchestrate_trade(request: TradeRequest):
             constraints=request.constraints
         )
         
-        return OrchestrateTradeResponse(
+        response_data = OrchestrateTradeResponse(
             success=True,
             trade_id=result["trade_id"],
             status=TradeStatus(result["status"]),
@@ -80,8 +81,18 @@ async def orchestrate_trade(request: TradeRequest):
             carbon_impact_kg=result["carbon_impact_kg"]
         )
         
+        return JSONResponse(
+            status_code=200,
+            content=response_data.dict(),
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "*"
+            }
+        )
+        
     except Exception as e:
-        return OrchestrateTradeResponse(
+        error_response = OrchestrateTradeResponse(
             success=False,
             trade_id="",
             status=TradeStatus.FAILED,
@@ -92,3 +103,29 @@ async def orchestrate_trade(request: TradeRequest):
             carbon_impact_kg=0,
             error=str(e)
         )
+        
+        return JSONResponse(
+            status_code=500,
+            content=error_response.dict(),
+            headers={
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "*"
+            }
+        )
+
+
+@router.options("/orchestrate-trade")
+async def orchestrate_trade_options():
+    """
+    Handle CORS preflight requests for orchestrate-trade endpoint.
+    """
+    return JSONResponse(
+        status_code=200,
+        content={"message": "CORS preflight successful"},
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "*"
+        }
+    )
