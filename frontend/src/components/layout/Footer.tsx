@@ -9,7 +9,7 @@ const footerLinks = {
     { label: 'Vision Portal', href: '/vision' },
     { label: 'Impact Dashboard', href: '/impact' },
     { label: 'API', href: '/#api' },
-    { label: 'Documentation', href: 'http://localhost:8000/docs' },
+    { label: 'Documentation', href: 'https://terrasync-ma.vercel.app/docs' },
   ],
   company: [
     { label: 'About', href: '/#about' },
