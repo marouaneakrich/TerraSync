@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Response
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import Optional
@@ -120,12 +120,14 @@ async def orchestrate_trade_options():
     """
     Handle CORS preflight requests for orchestrate-trade endpoint.
     """
-    return JSONResponse(
+    return Response(
         status_code=200,
-        content={"message": "CORS preflight successful"},
+        content=b'{"message": "CORS preflight successful"}',
         headers={
+            "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "*"
+            "Access-Control-Allow-Headers": "Content-Type, Authorization, *",
+            "Access-Control-Max-Age": "86400"
         }
     )
