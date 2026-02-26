@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Response
+from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from typing import Optional
@@ -81,15 +81,7 @@ async def orchestrate_trade_post(request: TradeRequest):
             carbon_impact_kg=result["carbon_impact_kg"]
         )
         
-        return JSONResponse(
-            status_code=200,
-            content=response_data.dict(),
-            headers={
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                "Access-Control-Allow-Headers": "*"
-            }
-        )
+        return response_data
         
     except Exception as e:
         error_response = OrchestrateTradeResponse(
@@ -104,15 +96,7 @@ async def orchestrate_trade_post(request: TradeRequest):
             error=str(e)
         )
         
-        return JSONResponse(
-            status_code=500,
-            content=error_response.dict(),
-            headers={
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-                "Access-Control-Allow-Headers": "*"
-            }
-        )
+        return error_response
 
 
 @router.options("/orchestrate-trade")
@@ -120,14 +104,4 @@ async def orchestrate_trade_options():
     """
     Handle CORS preflight requests for orchestrate-trade endpoint.
     """
-    return Response(
-        status_code=200,
-        content=b'{"message": "CORS preflight successful"}',
-        headers={
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization, *",
-            "Access-Control-Max-Age": "86400"
-        }
-    )
+    return {"message": "CORS preflight successful"}
