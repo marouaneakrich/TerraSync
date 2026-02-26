@@ -5,6 +5,11 @@ export const metadata: Metadata = {
   title: 'TerraSync | Circular Economy Orchestration Platform',
   description: 'Transform waste into value. AI-powered circular economy platform for sustainable resource management.',
   keywords: ['circular economy', 'sustainability', 'AI', 'recycling', 'eco-friendly', 'carbon credits'],
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
 }
 
 export default function RootLayout({

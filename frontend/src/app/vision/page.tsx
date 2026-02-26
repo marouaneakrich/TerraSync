@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Upload, Camera, Sparkles, Leaf, Recycle, MapPin, 
@@ -12,6 +12,7 @@ import { AnimatedNumber } from '@/components/ui/AnimatedNumber'
 import { analyzeItem, orchestrateTrade, type AnalysisResult, type TradeResult } from '@/lib/api'
 
 export default function VisionPortalPage() {
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const [isDragging, setIsDragging] = useState(false)
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [isNegotiating, setIsNegotiating] = useState(false)
@@ -117,6 +118,7 @@ export default function VisionPortalPage() {
                 `}
               >
                 <input
+                  ref={fileInputRef}
                   type="file"
                   accept="image/*"
                   onChange={handleFileSelect}
@@ -132,7 +134,7 @@ export default function VisionPortalPage() {
                     />
                     <div 
                       className="absolute inset-0 flex items-center justify-center bg-eco-dark/50 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-                      onClick={() => document.querySelector('input[type="file"]')?.click()}
+                      onClick={() => fileInputRef.current?.click()}
                     >
                       <div className="text-center">
                         <Upload className="w-8 h-8 text-white mx-auto mb-2" />

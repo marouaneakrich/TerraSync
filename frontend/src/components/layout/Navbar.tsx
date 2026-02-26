@@ -57,7 +57,7 @@ export function Navbar() {
               whileHover={{ scale: 1.05, rotate: 5 }}
               transition={{ type: 'spring', stiffness: 300 }}
             >
-              <Leaf className="w-5 h-5 text-eco-dark" />
+              <Leaf className="w-5 h-5 text-eco-dark flex-shrink-0" />
             </motion.div>
             <span className="text-xl font-display font-bold text-white group-hover:text-eco-glow transition-colors">
               Terra<span className="text-eco-glow">Sync</span>
@@ -101,7 +101,7 @@ export function Navbar() {
             className="md:hidden p-2 text-white/70 hover:text-eco-glow transition-colors"
             whileTap={{ scale: 0.9 }}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-6 h-6 flex-shrink-0" /> : <Menu className="w-6 h-6 flex-shrink-0" />}
           </motion.button>
         </div>
 

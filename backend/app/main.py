@@ -50,12 +50,12 @@ async def debug_config():
     }
 
 
-# Configure CORS - TEMPORARILY ALLOW ALL FOR DEBUGGING
+# Configure CORS - Use production settings
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # TODO: Change back to settings.ALLOWED_ORIGINS for production
+    allow_origins=settings.ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 

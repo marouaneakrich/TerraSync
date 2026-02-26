@@ -3,8 +3,8 @@
 > Transform waste into sustainable value through intelligent AI analysis and agentic negotiation with recycling partners.
 
 ## 🚀 Live Demo
-- **Frontend**: [https://terrsync.app](https://terrasync.app) *(Coming Soon)*
-- **API Documentation**: [https://api.terrasync.app/docs](https://api.terrasync.app/docs) *(Coming Soon)*
+- **Frontend**: [terrasync.app](terrasync.app) *(Coming Soon)*
+- **API Documentation**: [terrasync.up.railway.app/docs](terrasync.up.railway.app/docs)
 
 ---
 
@@ -214,7 +214,7 @@ DATABASE_URL=postgresql://user:pass@localhost:5432/terrasync
 4. **Backend**: Deploy to Railway/Render
 5. **Monitoring**: Set up logging and analytics
 
-📖 **Full Guide**: See [PRODUCTION_SETUP.md](./PRODUCTION_SETUP.md)
+📖 **Full Guide**: See [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 ---
 
@@ -243,6 +243,6 @@ Built by Marouane Akrich. If this project inspires you, please give it a ⭐!
 
 ---
 
-**📞 Contact**: hello@terrasync.app  
+**📞 Contact**: y.brox95@gmail.com  
 **🐛 Issues**: [GitHub Issues](https://github.com/marouaneakrich/TerraSync/issues)  
 **📖 Documentation**: [GitHub Wiki](https://github.com/marouaneakrich/TerraSync/wiki)

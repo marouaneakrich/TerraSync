@@ -14,8 +14,13 @@ class Settings(BaseSettings):
     VERSION: str = "1.0.0"
     API_PREFIX: str = "/api"
     
-    # CORS
-    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
+    # CORS - Include Railway domains
+    ALLOWED_ORIGINS: List[str] = [
+        "http://localhost:3000", 
+        "http://127.0.0.1:3000",
+        "https://localhost:3000",
+        "https://127.0.0.1:3000"
+    ]
     
     # OpenRouter Configuration
     OPENROUTER_API_KEY: str = ""

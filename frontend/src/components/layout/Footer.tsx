@@ -57,7 +57,7 @@ export function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-4 group">
               <div className="p-2 rounded-xl bg-gradient-to-br from-eco-glow to-earth-500 group-hover:scale-105 transition-transform">
-                <Leaf className="w-5 h-5 text-eco-dark" />
+                <Leaf className="w-5 h-5 text-eco-dark flex-shrink-0" />
               </div>
               <span className="text-xl font-display font-bold text-white group-hover:text-eco-glow transition-colors">
                 Terra<span className="text-eco-glow">Sync</span>
@@ -68,10 +68,10 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <a href="https://github.com/marouaneakrich/TerraSync" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-eco-glow transition-all duration-300 hover:scale-110">
-                <Github className="w-5 h-5" />
+                <Github className="w-5 h-5 flex-shrink-0" />
               </a>
               <a href="https://linkedin.com/company/terrasync" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-eco-glow transition-all duration-300 hover:scale-110">
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-5 h-5 flex-shrink-0" />
               </a>
             </div>
           </div>
