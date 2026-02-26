@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') || 'https://terrasync.up.railway.app';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/+$/, '') || 'https://terrasync.up.railway.app';
 
 console.log('API Base URL:', API_BASE_URL);
 
@@ -82,8 +82,13 @@ export async function analyzeItem(file: File): Promise<AnalysisResult> {
   formData.append('file', file);
 
   const url = `${API_BASE_URL}/api/analyze-item`;
-  console.log('Calling API:', url);
+  console.log('=== API DEBUG ===');
+  console.log('API Base URL:', API_BASE_URL);
+  console.log('Full URL:', url);
   console.log('File:', file.name, file.type, file.size);
+  console.log('Environment:', process.env.NODE_ENV);
+  console.log('NEXT_PUBLIC_API_URL:', process.env.NEXT_PUBLIC_API_URL);
+  console.log('================');
 
   try {
     const response = await fetch(url, {
@@ -92,6 +97,7 @@ export async function analyzeItem(file: File): Promise<AnalysisResult> {
     });
 
     console.log('Response status:', response.status);
+    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -108,8 +114,10 @@ export async function analyzeItem(file: File): Promise<AnalysisResult> {
 
     console.log('Analysis result:', data.analysis);
     return data.analysis;
-  } catch (error) {
+  } catch (error: any) {
     console.error('API call failed:', error);
+    console.error('Error type:', error.constructor.name);
+    console.error('Error message:', error.message);
     throw error;
   }
 }
