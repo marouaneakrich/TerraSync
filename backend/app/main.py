@@ -59,11 +59,23 @@ app.add_middleware(
     allow_headers=settings.CORS_ALLOW_HEADERS,
 )
 
+# Add comprehensive CORS middleware to handle OPTIONS globally
+@app.middleware("http")
+async def add_cors_headers(request, call_next):
+    response = await call_next(request)
+    
+    # Add CORS headers to all responses
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    
+    return response
+
 # Debug: Log CORS configuration
 logger.info(f"CORS Origins: {settings.ALLOWED_ORIGINS}")
 logger.info(f"CORS Methods: {settings.CORS_ALLOW_METHODS}")
 logger.info(f"CORS Headers: {settings.CORS_ALLOW_HEADERS}")
-logger.info(f"Deployment timestamp: 2026-02-26-22:30-UTC")
+logger.info(f"Deployment timestamp: 2026-02-26-22:40-UTC")
 
 # Add rate limiting middleware (temporarily disabled for debugging)
 # app.middleware("http")(rate_limit_middleware)

@@ -116,15 +116,3 @@ async def orchestrate_trade_post(request: TradeRequest):
                 "Access-Control-Allow-Headers": "*"
             }
         )
-
-
-@router.options("/orchestrate-trade")
-async def orchestrate_trade_options():
-    return Response(
-        status_code=200,
-        headers={
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "*"
-        }
-    )
