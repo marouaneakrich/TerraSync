@@ -63,7 +63,7 @@ app.add_middleware(
 logger.info(f"CORS Origins: {settings.ALLOWED_ORIGINS}")
 logger.info(f"CORS Methods: {settings.CORS_ALLOW_METHODS}")
 logger.info(f"CORS Headers: {settings.CORS_ALLOW_HEADERS}")
-logger.info(f"Deployment timestamp: 2026-02-26-22:15-UTC")
+logger.info(f"Deployment timestamp: 2026-02-26-22:20-UTC")
 
 # Add rate limiting middleware (temporarily disabled for debugging)
 # app.middleware("http")(rate_limit_middleware)
